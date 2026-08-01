@@ -1,5 +1,15 @@
 # Changelog
 
+## 1.0.2
+
+### Korrigiert
+
+- Die zweigeteilte, stark stilisierte Editionszeile wurde durch ein
+  eindeutig lesbares „GELBE EDITION“ ersetzt. Insbesondere sieht das `B`
+  bei großer Skalierung nicht mehr wie `E` oder `Y` aus.
+- Die später eingeblendete `Pika!`-Sprechblase enthält keine Fragmente der
+  englischen Titelgrafik mehr.
+
 ## 1.0.1
 
 ### Korrigiert

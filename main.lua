@@ -174,13 +174,18 @@ return function(mod)
   end
 
   -- Pokémon Yellow has no separate version ribbon: "GELBE EDITION" is baked
-  -- into the logo tile sheet.  TitleState loads descriptor paths directly,
-  -- so point it at the exactly recomposed German ROM asset.
+  -- into the logo tile sheet.  The later Pika bubble is also edition-specific
+  -- because its rectangular ROM update contains surrounding logo tiles.
   mod.content.field:patch("title", {
     logo = {
       path = mod.path .. "/overrides/title/pokemon_logo.png",
       width = 128,
       height = 56,
+    },
+    pikaBubble = {
+      path = mod.path .. "/overrides/title/pika_bubble.png",
+      width = 56,
+      height = 40,
     },
   })
 
