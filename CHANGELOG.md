@@ -1,5 +1,14 @@
 # Changelog
 
+## 1.0.3
+
+### Korrigiert
+
+- Der durch die SGB-Titelpalette blau dargestellte Rahmen um `GELBE` und
+  `EDITION` wurde entfernt.
+- Die Editionszeile beginnt nun unter dem `P` des Pokémon-Logos und endet
+  unter dessen letztem `N`, entsprechend der ursprünglichen Einrückung.
+
 ## 1.0.2
 
 ### Korrigiert
