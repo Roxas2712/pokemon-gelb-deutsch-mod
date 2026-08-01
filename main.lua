@@ -53,9 +53,89 @@ return function(mod)
   counts.dialogue = each("dialogue", function(id, value)
     mod.content.text:override(id, value)
   end)
-  counts.strings = each("strings", function(source, value)
-    mod.content.strings:override(source, value)
+  counts.dialogueAliases = each("dialogue_aliases", function(id, value)
+    mod.content.text:register(id, value)
   end)
+  local germanStrings = catalog("strings")
+  counts.strings = 0
+  for source, value in pairs(germanStrings) do
+    if type(value) == "string" and value ~= "" then
+      mod.content.strings:override(source, value)
+      counts.strings = counts.strings + 1
+    end
+  end
+  local runtimeText = catalog("runtime_text")
+  local runtimeNames = {
+    ["Yellow"] = "Gelb",
+    ["YELLOW"] = "GELB",
+    ["Pokemon Yellow"] = "Pokémon Gelbe Edition",
+    ["Pokémon Yellow"] = "Pokémon Gelbe Edition",
+    ["Yellow (alpha)"] = "Gelbe Edition",
+    ["Yellow Edition"] = "Gelbe Edition",
+    ["YELLOW EDITION"] = "GELBE EDITION",
+    ["POKéMON YELLOW"] = "POKéMON GELBE EDITION",
+    ["Oak"] = "Eich",
+    ["OAK"] = "EICH",
+    ["PROF.OAK"] = "PROF.EICH",
+  }
+  for source, value in pairs(runtimeNames) do
+    if germanStrings[source] == nil then
+      mod.content.strings:register(source, value)
+    end
+  end
+  counts.runtimeNames = 0
+  for _ in pairs(runtimeNames) do
+    counts.runtimeNames = counts.runtimeNames + 1
+  end
+  counts.runtimeText = 0
+  for _ in pairs(runtimeText) do
+    counts.runtimeText = counts.runtimeText + 1
+  end
+  local function localizeRuntimeText(text)
+    if type(text) ~= "string" then return text end
+    text = runtimeText[text] or germanStrings[text] or runtimeNames[text] or text
+    text = text:gsub("^(.-) got\n(.-)!$", "%1 erhält\n%2!")
+    text = text:gsub("^(.-) got a\nMAGIKARP!$", "%1 erhält ein\nKARPADOR!")
+    text = text:gsub("^(.-) received\na NUGGET!$", "%1 erhält\nein NUGGET!")
+    text = text:gsub(
+      "^Oh, that's a\nBIKE VOUCHER!\f(.-) exchanged\nit for a BICYCLE!$",
+      "Oh, ein\nRAD-COUPON!\f%1 tauscht den\nRAD-COUPON gegen\vdas FAHRRAD!")
+    text = text:gsub("^(.-) exchanged\nit for a BICYCLE!$",
+      "%1 tauscht den\nRAD-COUPON gegen\vdas FAHRRAD!")
+    text = text:gsub("^(.-)\npopped out!$", "%1\nkommt heraus!")
+    text = text:gsub("%f[%a]PROF%.OAK%f[%A]", "PROF.EICH")
+    text = text:gsub("%f[%a]OAK%f[%A]", "EICH")
+    text = text:gsub("%f[%a]Oak%f[%A]", "Eich")
+    text = text:gsub("%f[%a]YELLOW EDITION%f[%A]", "GELBE EDITION")
+    text = text:gsub("%f[%a]Yellow Edition%f[%A]", "Gelbe Edition")
+    text = text:gsub("%f[%a]POKéMON YELLOW%f[%A]", "POKéMON GELBE EDITION")
+    text = text:gsub("%f[%a]YELLOW%f[%A]", "GELB")
+    text = text:gsub("%f[%a]Yellow%f[%A]", "Gelb")
+    text = text:gsub("HM(%d%d)", "VM%1")
+    text = text:gsub("%f[%a]HITMONLEE%f[%A]", "KICKLEE")
+    text = text:gsub("%f[%a]HITMONCHAN%f[%A]", "NOCKCHAN")
+    return text
+  end
+
+  -- The launcher and title fallback draw edition metadata directly instead
+  -- of going through Strings().  Keep all visible Yellow names German once
+  -- this edition's translation mod is active.
+  local yellowInfo = GameVersion.VERSIONS.yellow
+  yellowInfo.label = "Gelb"
+  yellowInfo.displayName = "Pokémon Gelbe Edition"
+  yellowInfo.launcherName = "Gelbe Edition"
+
+  -- Hand-ported scripts can pass raw literals straight to TextBox.new().
+  -- Translate exact reviewed rows and dynamic proper names at that final
+  -- display seam, without modifying save data or the imported US dataset.
+  local TextBox = require("src.render.TextBox")
+  if not TextBox.__deutschOriginalNew then
+    TextBox.__deutschOriginalNew = TextBox.new
+    TextBox.new = function(game, text, onDone, opts)
+      return TextBox.__deutschOriginalNew(
+        game, localizeRuntimeText(text), onDone, opts)
+    end
+  end
   -- These labels are generated dynamically by the naming screen and are
   -- therefore not present in the engine-string extraction worksheet.
   mod.content.strings:register("lower case", "klein")
@@ -122,6 +202,7 @@ return function(mod)
       if type(text) == "string" and germanStatusLabels[text] then
         text = germanStatusLabels[text]
       end
+      text = localizeRuntimeText(text)
       return Font.__deutschOriginalDraw(text, x, y)
     end
   end
@@ -156,6 +237,7 @@ return function(mod)
   }
 
   local function generatedBattleTerms(text)
+    text = localizeRuntimeText(text)
     text = text:gsub("Enemy ", "Gegn. ")
     for source, translated in pairs(battleTerms) do
       text = text:gsub("%f[%a]" .. source .. "%f[%A]", translated)

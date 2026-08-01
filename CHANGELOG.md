@@ -1,5 +1,18 @@
 # Changelog
 
+## 1.0.1
+
+### Korrigiert
+
+- Editionsnamen werden überall als „Gelb“ beziehungsweise „Gelbe Edition“
+  angezeigt.
+- Professor Eich erscheint auch in der Gelb-spezifischen Fangdemonstration
+  nicht mehr als `PROF.OAK`.
+- Abweichende Gelb-Text-IDs für Spielhalle, Psycho, Karpador-Händler,
+  Liftöffner, VM02 und Lapras verwenden nun ihre offiziellen deutschen Texte.
+- Fest in Gen1Recomp eingebaute Zusatzdialoge werden nicht mehr auf Englisch
+  angezeigt.
+
 ## 1.0.0
 
 ### Hinzugefügt

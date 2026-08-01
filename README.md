@@ -1,7 +1,7 @@
 # Deutsch für Pokémon Gelb
 
 Diese Mod macht die kanonische US-ROM in Gen1Recomp auf Deutsch spielbar.
-Aktuelle Version: **1.0.0**.
+Aktuelle Version: **1.0.1**.
 
 Die Inhalte wurden nicht maschinell übersetzt: Dialoge, Pokédex-Texte, Namen,
 Schriftzeichen und der Titel stammen aus der unveränderten deutschen ROM von
@@ -31,7 +31,7 @@ im Game-Boy-Original nicht existieren, wurden separat übersetzt.
 
 ## Installation
 
-1. Unter **Releases** die Datei `deutsch-gelb-1.0.0.zip` herunterladen.
+1. Unter **Releases** die Datei `deutsch-gelb-1.0.1.zip` herunterladen.
 2. In Gen1Recomp **MODS > Import mod .zip** öffnen.
 3. Das Archiv auswählen, die Mod aktivieren und das Spiel neu starten.
 

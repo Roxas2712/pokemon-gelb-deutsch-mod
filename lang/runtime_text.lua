@@ -1,0 +1,38 @@
+-- Player-visible literals from hand-ported Gen1Recomp scripts.  These rows
+-- do not pass through the normal ROM/string registries, so main.lua applies
+-- exact matches at the TextBox boundary.
+
+return {
+  ["A BICYCLE costs\n¥1000000. Sorry,\nno instalments!"] = "Ein FAHRRAD kostet\n¥1000000. Leider\ngibt es keinen\vRatenkauf!",
+  ["A: continue"] = "A: weiter",
+  ["CATERPIE has no\npoison, but\vWEEDLE does.\fWatch out for its\nPOISON STING!"] = "RAUPY ist nicht\ngiftig, aber\vHORNLIU!\fAchte auf seinen\nGIFTSTACHEL!",
+  ["Come again!"] = "Komm bald wieder!",
+  ["Congratulations!\nYou beat our 5\ncontest trainers!\fYou just earned a\nfabulous prize!"] = "Herzlichen\nGlückwunsch!\vDu hast alle fünf\vTrainer besiegt!\fDu hast einen\ngroßartigen Preis\vgewonnen!",
+  ["Don't give up!"] = "Gib nicht auf!",
+  ["DRINKS"] = "GETRÄNKE",
+  ["Eels au Barbecue!\fLes guests will\nmutiny, I fear."] = "Currywurst!\fWie kommt eine\nsolche Banalität\vauf meine Karte?",
+  ["Gah! Even the\nCHIEF is no match\nfor you!\fTEAM ROCKET is\nfinished for\ngood!"] = "Was?! Selbst der\nCHIEF ist Dir\nunterlegen!\fTEAM ROCKET ist\nendgültig am Ende!",
+  ["How's the\nBICYCLE treating\nyou?"] = "Wie gefällt Dir\nDein neues\vFAHRRAD?\fDu kannst damit\nauf dem RADWEG\vund in Höhlen\vfahren!",
+  ["I hate this!\nMy dreams of\nTEAM ROCKET..."] = "Ich hasse das!\nMein Traum von\nTEAM ROCKET...",
+  ["It's ¥50 for a\nchild's ticket.\fWould you like to\ncome in?"] = "Für Kinder kostet\nder Eintritt ¥50!\fMöchtest Du\nhinein?",
+  ["No? Please come\nplay sometime!"] = "Nein? Dann komm\nvorbei, wenn Du\vspielen möchtest!",
+  ["Not enough\nmoney."] = "Du hast nicht\ngenug Geld.",
+  ["OAK: Impressive!\nYou truly are a\nPOKéMON MASTER!"] = "EICH: Beeindruckend!\nDu bist wahrlich\nein POKéMON-\vMEISTER!",
+  ["OAK: So you want\nto test your\nskills on me?\fVery well! Let\nme show you what\na real trainer\ncan do!"] = "EICH: Du möchtest\nDein Können an\nmir erproben?\fNun gut! Ich zeige\nDir, was ein\nechter Trainer\vvermag!",
+  ["Oh, OK then!"] = "OK, alles klar!",
+  ["By the way, would\nyou like to join\nTEAM ROCKET?"] = "Möchtest Du auch\nMitglied des\vTEAM ROCKET\vwerden?",
+  ["Arrgh! You are\nnot convinced?\fThen I'll show\nyou my power!"] = "Wirklich nicht?\fDann werde ich\nDich mit meiner\vStärke überzeugen!",
+  ["Prime Beef Steak!\fBut, have I enough\nfillets du beef?"] = "Muschel-Ragout!\fDie Gäste werden\nes lieben!",
+  ["Right, ¥50!\nThank you!"] = "OK, das sind ¥50!\nVielen Dank!",
+  ["Salmon du Salad!\fLes guests may\ngripe it's fish\vagain, however!"] = "Lachs-Filet!\fEine kulinarische\nKöstlichkeit\vsondergleichen!",
+  ["So you've come to\nshut down my\noperation?\fTEAM ROCKET's\nCHIEF won't go\ndown so easy!"] = "Du willst meine\nOperation also\nbeenden?\fDer CHIEF von\nTEAM ROCKET gibt\nnicht so leicht auf!",
+  ["Take your time,\nand enjoy it all!"] = "Nimm Dir Zeit und\nschaue alles an!",
+  ["Thank you so\nmuch!"] = "Vielen, vielen\nDank!",
+  ["VENDING MACHINE"] = "GETRÄNKEAUTOMAT",
+  ["You don't have\nenough money."] = "Du hast nicht\ngenug Geld.",
+  ["You don't have\nroom for HM02!"] = "Du hast keinen\nPlatz für VM02!",
+  ["You don't have\nroom for TM29!"] = "Du hast keinen\nPlatz für TM29!",
+  ["You have no room\nfor it!"] = "Du hast keinen\nPlatz dafür!",
+  ["You look tired!\nYou should take a\nquick nap!"] = "Du siehst müde\naus! Komm, ruhe\vDich kurz aus!",
+  ["You'll have to\nbeat the master\nfirst!"] = "Du mußt zuerst\nden Meister\nbesiegen!",
+}
