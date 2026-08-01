@@ -1,7 +1,7 @@
 {
   "id": "deutsch-gelb",
   "name": "Deutsch für Pokémon Gelb",
-  "version": "1.0.3",
+  "version": "1.0.4",
   "api": 2,
   "entry": "main.lua",
   "profile": "content",

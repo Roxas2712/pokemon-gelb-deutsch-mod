@@ -71,6 +71,8 @@ return function(mod)
     ["Pokemon Yellow"] = "Pokémon Gelbe Edition",
     ["Pokémon Yellow"] = "Pokémon Gelbe Edition",
     ["Yellow (alpha)"] = "Gelbe Edition",
+    ["Yellow Version"] = "Gelbe Edition",
+    ["YELLOW VERSION"] = "GELBE EDITION",
     ["Yellow Edition"] = "Gelbe Edition",
     ["YELLOW EDITION"] = "GELBE EDITION",
     ["POKéMON YELLOW"] = "POKéMON GELBE EDITION",
@@ -108,6 +110,8 @@ return function(mod)
     text = text:gsub("%f[%a]Oak%f[%A]", "Eich")
     text = text:gsub("%f[%a]YELLOW EDITION%f[%A]", "GELBE EDITION")
     text = text:gsub("%f[%a]Yellow Edition%f[%A]", "Gelbe Edition")
+    text = text:gsub("%f[%a]YELLOW VERSION%f[%A]", "GELBE EDITION")
+    text = text:gsub("%f[%a]Yellow Version%f[%A]", "Gelbe Edition")
     text = text:gsub("%f[%a]POKéMON YELLOW%f[%A]", "POKéMON GELBE EDITION")
     text = text:gsub("%f[%a]YELLOW%f[%A]", "GELB")
     text = text:gsub("%f[%a]Yellow%f[%A]", "Gelb")

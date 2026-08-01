@@ -1,5 +1,12 @@
 # Changelog
 
+## 1.0.4
+
+### Korrigiert
+
+- Zusätzliche Laufzeittexte innerhalb des Spiels verwenden durchgängig
+  `Gelb` beziehungsweise `Gelbe Edition` statt `Yellow`.
+
 ## 1.0.3
 
 ### Korrigiert
