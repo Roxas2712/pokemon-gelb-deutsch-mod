@@ -54,7 +54,10 @@ return function(mod)
     mod.content.text:override(id, value)
   end)
   counts.dialogueAliases = each("dialogue_aliases", function(id, value)
-    mod.content.text:register(id, value)
+    -- Older Gen1Recomp builds did not expose these Yellow-specific aliases;
+    -- current builds do.  override works for both cases and avoids treating
+    -- an already present engine row as a duplicate registration.
+    mod.content.text:override(id, value)
   end)
   local germanStrings = catalog("strings")
   counts.strings = 0
@@ -198,8 +201,43 @@ return function(mod)
   -- They also pass the English stat-name table as dynamic text.  Localize
   -- those engine-generated fragments centrally, then enforce the original
   -- two-line/18-glyph battle-box layout for every composed message.
+  local Strings = require("src.core.Strings")
   local Font = require("src.render.Font")
   local BattleState = require("src.battle.BattleState")
+
+  -- The German cartridge widens BATTLE_MENU_TEMPLATE two tiles to the left:
+  -- box (6,12)-(19,17), text at (8,14), cursors at columns 7/12.  The
+  -- English geometry hard-coded by Gen1Recomp starts at column 8, so the
+  -- original six-letter "FLUCHT" runs through its right border.  Replace
+  -- only the classic normal command menu; Safari and wide/3D battles either
+  -- already use the full width or have enough room.
+  if not BattleState.__deutschOriginalDrawTextArea then
+    BattleState.__deutschOriginalDrawTextArea = BattleState.drawTextArea
+    BattleState.drawTextArea = function(self)
+      if self.phase ~= "menu" or self.safari then
+        return BattleState.__deutschOriginalDrawTextArea(self)
+      end
+
+      Font.drawBox(0, 12, 20, 6)
+      Font.drawBox(6, 12, 14, 6)
+      love.graphics.setColor(0, 0, 0, 1)
+      Font.draw(Strings("FIGHT"), 64, 112)
+      Font.drawCode(0xE1, 104, 112)
+      Font.drawCode(0xE2, 112, 112)
+      Font.draw(Strings("ITEM"), 64, 128)
+      Font.draw(Strings("RUN"), 104, 128)
+
+      if self.demo then
+        Font.drawCode(0xED, 56,
+          (self.demoTimer or 0) <= 80 and 112 or 128)
+      else
+        local col = (self.menuIndex - 1) % 2
+        local row = math.floor((self.menuIndex - 1) / 2)
+        Font.drawCode(0xED, col == 0 and 56 or 96, 112 + row * 16)
+      end
+      love.graphics.setColor(1, 1, 1, 1)
+    end
+  end
 
   -- Battle HUDs read the translated statuses registry, but the party and
   -- summary menus draw mon.status (the internal PSN/SLP/etc. id) directly.

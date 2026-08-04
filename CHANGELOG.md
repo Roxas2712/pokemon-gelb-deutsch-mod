@@ -1,5 +1,15 @@
 # Changelog
 
+## 1.0.5
+
+### Korrigiert
+
+- Das klassische Kampfmenü verwendet die breitere Geometrie der deutschen
+  Originalfassung. Dadurch bleibt `FLUCHT` vollständig innerhalb des Rahmens;
+  Beschriftungen und Cursor entsprechen den deutschen ROM-Koordinaten.
+- Bereits von neueren Gen1Recomp-Versionen bereitgestellte Gelb-Text-IDs
+  werden ohne doppelte Registrierung übersetzt.
+
 ## 1.0.4
 
 ### Korrigiert
